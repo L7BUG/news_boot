@@ -1,16 +1,15 @@
 package com.l.controller;
 
-import org.springframework.stereotype.Controller;
+import com.alibaba.fastjson.JSONObject;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
 
-@Controller
+@RestController
 public class TestController {
     @PostMapping("/api/test")
-    @ResponseBody
-    public String test(String s){
-        System.out.println(s);
-        System.out.println("没有热水");
+    public String test(@RequestBody JSONObject jsonObject){
+        System.out.println(jsonObject);
         return "{a: 123, b: 321}";
     }
 }
