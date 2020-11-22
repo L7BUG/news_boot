@@ -1,0 +1,2 @@
+(window["webpackJsonp"]=window["webpackJsonp"]||[]).push([["chunk-2d21e30b"],{d504:function(n,e,t){"use strict";t.r(e);var r=function(){var n=this,e=n.$createElement,t=n._self._c||e;return t("div",[t("h1",[t("router-link",{attrs:{to:"/login"}},[n._v("后台管理")])],1)])},a=[],o={name:"Index"},u=o,c=t("2877"),i=Object(c["a"])(u,r,a,!1,null,"08af6756",null);e["default"]=i.exports}}]);
+//# sourceMappingURL=chunk-2d21e30b.84965b27.js.map

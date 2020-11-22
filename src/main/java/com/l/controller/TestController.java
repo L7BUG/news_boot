@@ -1,13 +1,16 @@
 package com.l.controller;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
-@RestController
+@Controller
 public class TestController {
-    @GetMapping("/api/test")
-    public String test(){
+    @PostMapping("/api/test")
+    @ResponseBody
+    public String test(String s){
+        System.out.println(s);
         System.out.println("没有热水");
-        return "肿么肥事123";
+        return "{a: 123, b: 321}";
     }
 }
