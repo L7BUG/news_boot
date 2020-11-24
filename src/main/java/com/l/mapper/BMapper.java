@@ -1,7 +1,5 @@
 package com.l.mapper;
 
-import com.l.pojo.A;
-import com.l.pojo.B;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
