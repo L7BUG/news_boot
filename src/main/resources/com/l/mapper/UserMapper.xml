@@ -1,0 +1,33 @@
+<!DOCTYPE mapper PUBLIC
+        "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.l.mapper.UserMapper">
+    <!--    开启缓存-->
+    <cache/>
+    <select id="selectRoleById" resultMap="com.l.mapper.RoleMapper.baseMap">
+        select * from Role where id = #{roleId};
+    </select>
+    <resultMap id="UserMap" type="User">
+        <id column="id" property="id"/>
+        <result column="username" property="username"/>
+        <result column="password" property="password"/>
+        <!--        <association-->
+        <!--                property="roleId"-->
+        <!--                javaType="Role"-->
+        <!--                select="selectRoleById"-->
+        <!--                column="roleId">-->
+        <!--            <id column="id" property="id"/>-->
+        <!--        </association>-->
+        <result column="tel" property="tel"/>
+        <result column="registerTime" property="registerTime"/>
+        <result column="status" property="status"/>
+    </resultMap>
+    <sql id="UserSql">
+        `id`, `username`, `password`, `roleId`, `tel`, `registerTime`, `status`
+    </sql>
+    <select id="selectAll" resultMap="UserMap">
+        select
+        <include refid="UserSql"></include>
+        from User;
+    </select>
+</mapper>
