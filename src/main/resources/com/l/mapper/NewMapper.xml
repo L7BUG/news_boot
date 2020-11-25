@@ -1,0 +1,33 @@
+<!DOCTYPE mapper PUBLIC
+        "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.l.mapper.NewMapper">
+    <!--    开启缓存-->
+    <cache/>
+    <resultMap id="baseMap" type="com.l.pojo.New">
+        <id column="id" property="id"/>
+        <result column="title" property="title"/>
+        <result column="content" property="content"/>
+        <result column="publishTime" property="publishTime"/>
+        <result column="clicks" property="clicks"/>
+        <result column="publishStatus" property="publishStatus"/>
+        <association
+                property="user"
+                column="userId"
+                javaType="com.l.pojo.User"
+                select="com.l.mapper.UserMapper.selectByPrimaryKey"></association>
+        <association
+                property="category"
+                column="categoryId"
+                javaType="com.l.pojo.Category"
+                select="com.l.mapper.CategoryMapper.selectByPrimaryKey"></association>
+    </resultMap>
+    <sql id="baseSql">
+        id, title, content, categoryId, userId, publishTime, clicks, publishStatus
+    </sql>
+    <select id="selectByPrimaryKey" resultMap="baseMap">
+        select
+        <include refid="baseSql"></include>
+        from New where id = #{id};
+    </select>
+</mapper>
