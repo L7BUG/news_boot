@@ -1,0 +1,39 @@
+<!DOCTYPE mapper PUBLIC
+        "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.l.mapper.CategoryMapper">
+    <!--    开启缓存-->
+    <cache/>
+    <sql id="baseSql">
+        `id`, `name`
+    </sql>
+    <resultMap id="CategoryMap" type="Category">
+        <id column="id" property="id"/>
+        <result column="name" property="name"/>
+    </resultMap>
+    <select id="selectByPrimaryKey" resultType="Category">
+        select * from Category where id = #{id};
+    </select>
+
+    <select id="selectAll" resultMap="CategoryMap">
+        select * from  Category;
+    </select>
+
+    <insert id="insertOne" parameterType="Category" keyProperty="id" useGeneratedKeys="true">
+        insert into Category (name ) values (#{name})
+    </insert>
+
+    <delete id="deleteByPrimaryKey">
+        delete from Category where id = #{id}
+    </delete>
+
+    <update id="updateByPrimaryKey" parameterType="Category">
+        update Category
+        <set>
+            <if test="name != null">
+                name = #{name},
+            </if>
+        </set>
+        where id = #{id};
+    </update>
+</mapper>

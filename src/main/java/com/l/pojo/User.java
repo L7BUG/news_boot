@@ -1,25 +1,30 @@
 package com.l.pojo;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
 import java.util.Date;
 
 /**
  * User
- * @author 
+ *
+ * @author
  */
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class User implements Serializable {
     /**
      * 用户ID
      */
-    private Integer userId;
+    private Integer id;
 
     /**
      * 登陆账号
      */
-    private String userName;
+    private String username;
 
     /**
      * 登陆密码
@@ -29,7 +34,7 @@ public class User implements Serializable {
     /**
      * 角色ID
      */
-    private Integer roleId;
+    private Role role;
 
     /**
      * 联系电话
