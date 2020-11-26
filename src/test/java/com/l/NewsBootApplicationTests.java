@@ -1,6 +1,5 @@
 package com.l;
 
-import com.l.pojo.Role;
 import com.l.service.RoleService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +12,6 @@ class NewsBootApplicationTests {
 
     @Test
     void contextLoads() {
-        System.out.println(service.insertOne(new Role(null, "test事务", "test事务")));
+        System.out.println(service.selectAll());
     }
 }

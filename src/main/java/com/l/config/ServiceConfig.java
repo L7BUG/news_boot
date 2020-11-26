@@ -10,6 +10,8 @@ import org.springframework.jdbc.support.JdbcTransactionManager;
 import org.springframework.transaction.TransactionDefinition;
 import org.springframework.transaction.interceptor.*;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
@@ -58,5 +60,11 @@ public class ServiceConfig {
         AspectJExpressionPointcut pointcut = new AspectJExpressionPointcut();
         pointcut.setExpression(AOP_POINTCUT_EXPRESSION);
         return new DefaultPointcutAdvisor(pointcut, txAdvice());
+    }
+
+    @Bean("aopDateFormat")
+    public DateFormat dateFormat() {
+        DateFormat dateFormat = new SimpleDateFormat("yyyy年MM月dd日 HH时mm分ss秒");
+        return dateFormat;
     }
 }
