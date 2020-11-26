@@ -15,12 +15,13 @@ class NewsBootApplicationTests {
 
     @Test
     void contextLoads() {
-        New t = new New();
-        User user = new User();
-        t.setTitle("mapper测试数据");
-        Category category = new Category();
-        t.setCategory(category);
+        New t = mapper.selectByPrimaryKey(6);
+        User user = t.getUser();
+        user.setId(1);
         t.setUser(user);
-        System.out.println(mapper.deleteBySelective(t));
+        Category category = t.getCategory();
+        category.setId(4);
+        t.setCategory(category);
+        mapper.updateByPrimaryKeySelective(t);
     }
 }

@@ -41,4 +41,19 @@ public interface NewMapper {
      */
     int deleteBySelective(New t);
 
+    /**
+     * 根据主键动态更新数据
+     *
+     * @param t
+     * @return
+     */
+    int updateByPrimaryKeySelective(New t);
+
+    /**
+     * 根据主键增加访问次数
+     *
+     * @param id
+     * @return
+     */
+    int updateByPrimaryKeyAddClicks(Integer id);
 }

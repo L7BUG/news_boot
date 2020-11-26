@@ -57,4 +57,27 @@
             </if>
         </where>
     </delete>
+    <update id="updateByPrimaryKeySelective">
+        update New
+        <set>
+            <if test="title != null">
+                title = #{title},
+            </if>
+            <if test="content != null">
+                content = #{content},
+            </if>
+            <if test="category != null and category.id != null">
+                categoryId = #{category.id},
+            </if>
+            <if test="user != null and user.id != null">
+                userId = #{user.id},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+    <update id="updateByPrimaryKeyAddClicks">
+        update New
+        set clicks = clicks + 1
+        where id = #{id};
+    </update>
 </mapper>
