@@ -30,7 +30,6 @@ public class New implements Serializable {
      * 信息类别ID
      */
     private Category category;
-    private Integer categoryId;
 
     /**
      * 发布用户ID
@@ -48,7 +47,7 @@ public class New implements Serializable {
     private Integer clicks;
 
     /**
-     * 状态 1: 发布 2: 删除
+     * 状态 1: 发布 2: 待删除
      */
     private String publishStatus;
     /**

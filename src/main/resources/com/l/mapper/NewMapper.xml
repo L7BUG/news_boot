@@ -30,4 +30,31 @@
         <include refid="baseSql"></include>
         from New where id = #{id};
     </select>
+
+    <select id="selectAll" resultMap="baseMap">
+        select * from New ;
+    </select>
+
+    <insert id="insertOne" parameterType="com.l.pojo.New" useGeneratedKeys="true" keyProperty="id">
+        insert into New (title, content, categoryId, userId)
+        values (#{title}, #{content}, #{category.id}, #{user.id})
+    </insert>
+
+    <delete id="deleteBySelective" parameterType="New">
+        delete from New
+        <where>
+            <if test="id != null">
+                and id = #{id}
+            </if>
+            <if test="title != null">
+                and title = #{title}
+            </if>
+            <if test="category != null and category.Id != null">
+                and categoryId = #{category.id}
+            </if>
+            <if test="user != null and user.id != null">
+                and userId = #{user.id}
+            </if>
+        </where>
+    </delete>
 </mapper>

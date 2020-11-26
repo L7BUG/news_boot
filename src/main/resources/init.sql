@@ -46,7 +46,7 @@ create table if not exists New
     userId        int         not null comment '发布用户ID',
     publishTime   datetime default current_timestamp comment '发布时间 默认为 当前时间',
     clicks        int      default 0 comment '浏览次数',
-    publishStatus char(1)  default '1' comment '状态 1: 发布 2: 删除',
+    publishStatus char(1)  default '1' comment '状态 1: 发布 2: 待删除',
     constraint foreign key (userId) references User (id),
     constraint foreign key (categoryId) references Category (id)
 ) char set utf8;
