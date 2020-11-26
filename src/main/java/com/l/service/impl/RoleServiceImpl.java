@@ -31,7 +31,6 @@ public class RoleServiceImpl implements RoleService {
     @Override
     public int insertOne(Role role) {
         int i = roleMapper.insertOne(role);
-        int i1 = 1 / 0;
         return i;
     }
 
