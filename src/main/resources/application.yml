@@ -16,5 +16,5 @@ server:
 mybatis:
   mapper-locations: classpath:./com/l/mapper/*.xml
   type-aliases-package: com.l.pojo
-  configuration:
-    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+#  configuration:
+#    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
