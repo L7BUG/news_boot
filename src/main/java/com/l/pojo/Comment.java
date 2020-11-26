@@ -14,7 +14,7 @@ public class Comment implements Serializable {
     /**
      * 新闻id
      */
-    private Integer newId;
+    private New mNew;
 
     /**
      * 评论内容
