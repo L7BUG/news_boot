@@ -14,4 +14,26 @@
     <select id="selectByPrimaryKey" resultType="Category">
         select * from Category where id = #{id};
     </select>
+
+    <select id="selectAll" resultMap="CategoryMap">
+        select * from  Category;
+    </select>
+
+    <insert id="insertOne" parameterType="Category" keyProperty="id" useGeneratedKeys="true">
+        insert into Category (name ) values (#{name})
+    </insert>
+
+    <delete id="deleteByPrimaryKey">
+        delete from Category where id = #{id}
+    </delete>
+
+    <update id="updateByPrimaryKey" parameterType="Category">
+        update Category
+        <set>
+            <if test="name != null">
+                name = #{name},
+            </if>
+        </set>
+        where id = #{id};
+    </update>
 </mapper>
