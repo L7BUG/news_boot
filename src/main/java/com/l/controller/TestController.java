@@ -8,8 +8,8 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class TestController {
     @PostMapping("/api/test")
-    public String test(@RequestBody JSONObject jsonObject){
-        System.out.println(jsonObject);
+    public String test(@RequestBody JSONObject body) {
+        System.out.println(body.toString());
         return "{a: 123, b: 321}";
     }
 }
