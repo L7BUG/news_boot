@@ -1,5 +1,7 @@
 package com.l.utils;
 
+import com.l.json.CODE;
+import com.l.json.MESSAGE;
 import com.l.json.MyJSON;
 import com.sun.istack.internal.NotNull;
 
@@ -32,5 +34,21 @@ public class RespJsonUtils {
      */
     public static MyJSON<Void> get(@NotNull Integer code, @NotNull String message) {
         return get(code, message, null);
+    }
+
+    /**
+     * true
+     * code:200 message: 成功 data: data
+     * false
+     * code:400 message: 失败 data: data
+     *
+     * @param data
+     * @param ok
+     * @param <T>
+     * @return
+     */
+    public static <T> MyJSON<T> get(T data, boolean ok) {
+        if (ok) return get(CODE.OK, MESSAGE.OK, data);
+        return get(CODE.ERROR, MESSAGE.ERROR, data);
     }
 }

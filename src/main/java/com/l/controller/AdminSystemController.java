@@ -51,8 +51,18 @@ public class AdminSystemController {
 
     @DeleteMapping(DELETE.DELETE_ROLE + "/{id}")
     public MyJSON<Void> deleteRole(@PathVariable int id) {
-        System.out.println(id);
-        MyJSON<Void> resp = new MyJSON<>();
-        return resp;
+        MyJSON<Void> resp = null;
+        try {
+            int i = roleService.deleteById(id);
+            if (i > 0) {
+                resp = RespJsonUtils.get(null, true);
+            } else {
+                resp = RespJsonUtils.get(null, false);
+            }
+        } catch (Exception e) {
+            resp = RespJsonUtils.get(CODE.ERROR, "该角色因为约束关系无法删除！处理约束关系后再重试！");
+        } finally {
+            return resp;
+        }
     }
 }

@@ -1,5 +1,8 @@
 package com.l.requestUrl;
 
+/**
+ * 获取资源
+ */
 public interface GET {
 
 
