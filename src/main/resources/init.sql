@@ -10,7 +10,8 @@ create table Role
 ) char set utf8;
 insert into Role (name, remark)
 values ('admin', '超级管理员就是这个系统的上帝'),
-       ('author', '打工仔作者');
+       ('author', '打工仔作者'),
+       ('user', '普通用户');
 
 create table User
 (
@@ -29,8 +30,8 @@ create table User
 ) char set utf8;
 insert into User (username, password, roleId)
 values ('admin', '123456', 1),
-       ('lllYYY', '123456', 1),
-       ('testAuthor', '123456', 2);
+       ('lllYYY', '123456', 2),
+       ('testUser', '123456', 3);
 
 create table if not exists Category
 (
@@ -64,19 +65,3 @@ values ('国内'),
        ('财经'),
        ('体育'),
        ('娱乐');
-
-insert into New (title, content, categoryId, userId, clicks)
-values ('测试1', '测试内容1', 1, 2, 1),
-       ('测试2', '测试内容2', 1, 2, 1),
-       ('测试3', '测试内容3', 1, 2, 1),
-       ('测试4', '测试内容4', 1, 2, 1),
-       ('测试5', '测试内容5', 1, 2, 1),
-       ('测试6', '测试内容6', 1, 2, 1);
-
-insert into Comment (newId, content)
-values (1, '测试评论1'),
-       (2, '测试评论2'),
-       (3, '测试评论3'),
-       (4, '测试评论4'),
-       (5, '测试评论5'),
-       (6, '测试评论6');
