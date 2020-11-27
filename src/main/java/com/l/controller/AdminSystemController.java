@@ -4,6 +4,7 @@ import com.l.json.CODE;
 import com.l.json.MESSAGE;
 import com.l.json.MyJSON;
 import com.l.pojo.Role;
+import com.l.pojo.User;
 import com.l.requestUrl.DELETE;
 import com.l.requestUrl.GET;
 import com.l.requestUrl.POST;
@@ -78,6 +79,23 @@ public class AdminSystemController {
             e.printStackTrace();
         } finally {
             return resp;
+        }
+    }
+
+    @PutMapping(PUT.UPDATE_PASSWORD_USER)
+    public MyJSON<Void> updateUserPassword(@RequestBody User user) {
+        MyJSON<Void> voidMyJSON = null;
+        try {
+            if (userService.updateByPrimaryKeySelective(user) > 0) {
+                voidMyJSON = RespJsonUtils.get(null, true);
+            } else {
+                voidMyJSON = RespJsonUtils.get(null, false);
+            }
+        } catch (Exception e) {
+            voidMyJSON = RespJsonUtils.get(null, false);
+            e.printStackTrace();
+        } finally {
+            return voidMyJSON;
         }
     }
 }

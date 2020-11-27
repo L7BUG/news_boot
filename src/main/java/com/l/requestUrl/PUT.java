@@ -5,4 +5,6 @@ package com.l.requestUrl;
  */
 public interface PUT {
     String UPDATE_ROLE = "/role/update";
+
+    String UPDATE_PASSWORD_USER = "/user/password";
 }
