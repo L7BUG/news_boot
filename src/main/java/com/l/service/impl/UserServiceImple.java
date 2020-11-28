@@ -4,6 +4,7 @@ import com.l.mapper.UserMapper;
 import com.l.pojo.User;
 import com.l.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -42,5 +43,33 @@ public class UserServiceImple implements UserService {
     @Override
     public int updateByPrimaryKeySelective(User user) {
         return userMapper.updateByPrimaryKeySelective(user);
+    }
+
+    @Override
+    public List<User> selectLimitBySelective(User user, Integer index, Integer number) {
+        return userMapper.selectLimitBySelective(user, index, number);
+    }
+
+    @Override
+    public long selectSelectiveCount(User user) {
+        return userMapper.selectSelectiveCount(user);
+    }
+
+    @Override
+    public List<User> getPage(User user, int page) {
+        return userMapper.selectLimitBySelective(user, ((page - 1) * pageShowNumber), pageShowNumber);
+    }
+
+    @Value("10")
+    private int pageShowNumber;
+
+
+    public void setPageShowNumber(int number) {
+        this.pageShowNumber = number;
+    }
+
+    @Override
+    public int getPageShowNumber() {
+        return this.pageShowNumber;
     }
 }
