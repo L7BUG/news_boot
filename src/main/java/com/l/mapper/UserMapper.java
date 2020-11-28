@@ -2,6 +2,7 @@ package com.l.mapper;
 
 import com.l.pojo.User;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -55,4 +56,22 @@ public interface UserMapper {
      * @return
      */
     int updateByPrimaryKeySelective(User user);
+
+    /**
+     * 分页动态查询 username 查询为 like 条件
+     *
+     * @param user
+     * @param index  从哪里开始
+     * @param number 数量
+     * @return
+     */
+    List<User> selectLimitBySelective(@Param("user") User user, @Param("index") Integer index, @Param("number") Integer number);
+
+    /**
+     * 动态条件获取数量
+     *
+     * @param user
+     * @return
+     */
+    long selectSelectiveCount(User user);
 }
