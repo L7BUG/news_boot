@@ -163,7 +163,7 @@
             <if test="password != null">
                 and password = #{password}
             </if>
-            <if test="role != null">
+            <if test="role != null and role.id != null">
                 and roleId = #{role.id}
             </if>
             <if test="tel != null">

@@ -14,19 +14,12 @@ class NewsBootApplicationTests {
 
     @Test
     void contextLoads() {
-        mapper.setPageShowNumber(20);
+        mapper.setPageShowNumber(5);
         User user = new User();
-        Role role = new Role(null, null, null);
-        user.setUsername("a");
-        role.setId(2);
+        Role role = new Role();
         user.setRole(role);
-        int numberPage = (int) (mapper.selectSelectiveCount(user) / mapper.getPageShowNumber() + 1);
-        System.out.println(numberPage);
-        for (int i = 1; i <= numberPage; i++) {
-            for (User u : mapper.getPage(user, i)) {
-                System.out.println(u);
-            }
-        }
+        System.out.println(user);
+        System.out.println(mapper.selectSelectiveCount(user));
     }
 
 }
