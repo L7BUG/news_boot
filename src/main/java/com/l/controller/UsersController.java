@@ -6,6 +6,7 @@ import com.l.json.MyJSON;
 import com.l.pojo.User;
 import com.l.requestUrl.DELETE;
 import com.l.requestUrl.POST;
+import com.l.requestUrl.PUT;
 import com.l.service.UserService;
 import com.l.utils.RespJsonUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -95,6 +96,32 @@ public class UsersController {
         }
 //        删除部分
         return RespJsonUtils.get(CODE.OK, "<h4>部分资源因为约束关系删除失败！</h4>"
-                + sb.toString() + "<h4>请处理约束关系</h4>", null);
+                + sb.toString() + "<h4  >请处理约束关系</h4    >", null);
+    }
+
+    @PostMapping(POST.ADD_USER)
+    public MyJSON<Void> addUser(@RequestBody User request) {
+        MyJSON<Void> resp = null;
+        try {
+            userService.insertOne(request);
+            resp = RespJsonUtils.get(null, true);
+        } catch (Exception e) {
+            resp = RespJsonUtils.get(CODE.ERROR, "新增失败!", null);
+        } finally {
+            return resp;
+        }
+    }
+
+    @PutMapping(PUT.UPDATE_USER)
+    public MyJSON<Void> updateUser(@RequestBody User request) {
+        MyJSON<Void> resp = null;
+        try {
+            userService.updateByPrimaryKeySelective(request);
+            resp = RespJsonUtils.get(CODE.OK, "更新成功", null);
+        } catch (Exception e) {
+            resp = RespJsonUtils.get(null, false);
+        } finally {
+            return resp;
+        }
     }
 }

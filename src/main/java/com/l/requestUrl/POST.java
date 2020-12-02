@@ -10,7 +10,9 @@ public interface POST {
     String ADD_ROLE = "/role/add";
 
     //user
-    
+
     //    条件查询
     String QUERY_USER = "/user/query";
+
+    String ADD_USER = "/user/add";
 }
