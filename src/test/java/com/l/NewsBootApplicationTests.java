@@ -1,22 +1,25 @@
 package com.l;
 
-import com.l.json.MESSAGE;
-import com.l.service.RoleService;
-import com.l.utils.RespJsonUtils;
+import com.l.pojo.Role;
+import com.l.pojo.User;
+import com.l.service.UserService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import java.util.ArrayList;
-
 @SpringBootTest
 class NewsBootApplicationTests {
     @Autowired
-    RoleService service;
+    UserService mapper;
 
     @Test
     void contextLoads() {
-        System.out.println(RespJsonUtils.get(null, MESSAGE.OK, new ArrayList()));
+        mapper.setPageShowNumber(5);
+        User user = new User();
+        Role role = new Role();
+        user.setRole(role);
+        System.out.println(user);
+        System.out.println(mapper.selectSelectiveCount(user));
     }
 
 }

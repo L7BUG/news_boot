@@ -51,4 +51,39 @@ public interface UserService {
      * @return
      */
     int updateByPrimaryKeySelective(User user);
+
+    /**
+     * 分页动态查询 username 查询为 like 条件
+     *
+     * @param user
+     * @param index  从哪里开始
+     * @param number 数量
+     * @return
+     */
+    List<User> selectLimitBySelective(User user, Integer index, Integer number);
+
+    /**
+     * 动态条件获取数量
+     *
+     * @param user
+     * @return
+     */
+    long selectSelectiveCount(User user);
+
+    /**
+     * 根据条件获取某一页
+     *
+     * @param user
+     * @param page
+     * @return
+     */
+    List<User> getPage(User user, int page);
+
+    default void setPageShowNumber(int number) {
+
+    }
+
+    default int getPageShowNumber() {
+        return 10;
+    }
 }

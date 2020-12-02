@@ -5,6 +5,6 @@ package com.l.requestUrl;
  */
 public interface GET {
 
-
+    //    角色
     String QUERY_ALL_ROLE = "/role/queryAll";
 }

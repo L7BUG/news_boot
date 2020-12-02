@@ -118,4 +118,63 @@
         </set>
         where id = #{id}
     </update>
+    <select id="selectLimitBySelective" resultMap="UserMap">
+        select
+        <include refid="UserSql"></include>
+        from User
+        <if test="user != null">
+            <where>
+                <if test="user.id != null">
+                    and id = #{user.id}
+                </if>
+                <if test="user.username != null">
+                    and username like CONCAT('%', #{user.username}, '%')
+                </if>
+                <if test="user.password != null">
+                    and password = #{user.password}
+                </if>
+                <if test="user.role != null and user.role.id != null">
+                    and roleId = #{user.role.id}
+                </if>
+                <if test="user.tel != null">
+                    and tel = #{user.tel}
+                </if>
+                <if test="user.registerTime != null">
+                    and registerTime = #{user.registerTime}
+                </if>
+                <if test="user.status != null">
+                    and status = #{user.status}
+                </if>
+            </where>
+        </if>
+        limit #{index}, #{number}
+    </select>
+    <select id="selectSelectiveCount" resultType="long" parameterType="User">
+        select
+        count(id)
+        from User
+        <where>
+            <if test="id != null">
+                and id = #{id}
+            </if>
+            <if test="username != null">
+                and username like CONCAT('%', #{username}, '%')
+            </if>
+            <if test="password != null">
+                and password = #{password}
+            </if>
+            <if test="role != null and role.id != null">
+                and roleId = #{role.id}
+            </if>
+            <if test="tel != null">
+                and tel = #{tel}
+            </if>
+            <if test="registerTime != null">
+                and registerTime = #{registerTime}
+            </if>
+            <if test="status != null">
+                and status = #{status}
+            </if>
+        </where>
+    </select>
 </mapper>
