@@ -27,7 +27,11 @@ public class LoginController {
         List<User> result = userService.selectBySelective(selective);
         MyJSON<User> data = null;
         if (result.size() > 0) {
-            return RespJsonUtils.get(CODE.OK, MESSAGE.OK, result.get(0));
+            User user = result.get(0);
+            if (user.getRole().getId() == 1)
+                return RespJsonUtils.get(CODE.OK, MESSAGE.OK, user);
+            else
+                return RespJsonUtils.get(CODE.OK, "该用户没有权限", user);
         } else {
             return RespJsonUtils.get(CODE.ERROR, MESSAGE.ERROR, null);
         }
