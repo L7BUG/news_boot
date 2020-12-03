@@ -15,4 +15,7 @@ public interface POST {
     String QUERY_USER = "/user/query";
 
     String ADD_USER = "/user/add";
+
+    //    category
+    String ADD_CATEGORY = "/category/add";
 }

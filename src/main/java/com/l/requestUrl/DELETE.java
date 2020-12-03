@@ -9,4 +9,6 @@ public interface DELETE {
 
     //    user
     String DELETE_USER = "/user/delete";
+    //    category
+    String DELETE_CATEGORY = "/category/delete";
 }
