@@ -92,7 +92,7 @@
                     and id = #{n.id}
                 </if>
                 <if test="n.title != null">
-                    and title = #{n.title}
+                    and title like CONCAT('%',#{n.title}, '%')
                 </if>
                 <if test="n.category != null and n.category.id != null">
                     and categoryId = #{n.category.id}
@@ -114,7 +114,7 @@
                 and id = #{id}
             </if>
             <if test="title != null">
-                and title = #{title}
+                and title like CONCAT('%',#{title}, '%')
             </if>
             <if test="category != null and category.id != null">
                 and categoryId = #{category.id}

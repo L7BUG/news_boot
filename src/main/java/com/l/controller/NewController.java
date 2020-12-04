@@ -25,6 +25,7 @@ public class NewController {
         try {
 //            查询条件
             New n = request.toJavaObject(New.class);
+            System.out.println(n);
 //            每页显示数量
             Integer pageShowNumber = request.getInteger("pageShowNumber");
             newService.setPageShowNumber(pageShowNumber);
