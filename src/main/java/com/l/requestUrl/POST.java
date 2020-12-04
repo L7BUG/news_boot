@@ -18,4 +18,8 @@ public interface POST {
 
     //    category
     String ADD_CATEGORY = "/category/add";
+
+    //    news
+//    条件查询
+    String QUERY_NEW = "/new/query";
 }
