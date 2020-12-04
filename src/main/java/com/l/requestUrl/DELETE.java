@@ -11,4 +11,7 @@ public interface DELETE {
     String DELETE_USER = "/user/delete";
     //    category
     String DELETE_CATEGORY = "/category/delete";
+
+    //    new
+    String DELETE_NEW = "/new/delete";
 }

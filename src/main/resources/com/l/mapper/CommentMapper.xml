@@ -44,13 +44,13 @@
         delete from Comment
         <where>
             <if test="content != null">
-                and content = #{content},
+                and content = #{content}
             </if>
             <if test="mNew != null and mNew.id != null">
-                and newId = #{mNew.id},
+                and newId = #{mNew.id}
             </if>
             <if test="user != null and user.id != null">
-                and userId = #{user.id},
+                and userId = #{user.id}
             </if>
         </where>
     </delete>
