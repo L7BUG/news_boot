@@ -4,6 +4,7 @@ import com.l.mapper.NewMapper;
 import com.l.pojo.New;
 import com.l.service.NewService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -41,5 +42,35 @@ public class NewServiceImpl implements NewService {
     @Override
     public int updateByPrimaryKeyAddClicks(Integer id) {
         return newMapper.updateByPrimaryKeyAddClicks(id);
+    }
+
+    @Override
+    public List<New> selectLimitBySelective(New n, Integer index, Integer number) {
+        return newMapper.selectLimitBySelective(n, index, number);
+    }
+
+    @Override
+    public long selectSelectiveCount(New n) {
+        return newMapper.selectSelectiveCount(n);
+    }
+
+    @Override
+    public List<New> getPage(New n, int page) {
+        return selectLimitBySelective(n
+                , (page - 1) * getPageShowNumber()
+                , getPageShowNumber());
+    }
+
+    @Value("10")
+    private int pageShowNumber;
+
+    @Override
+    public void setPageShowNumber(int number) {
+        this.pageShowNumber = number;
+    }
+
+    @Override
+    public int getPageShowNumber() {
+        return pageShowNumber;
     }
 }
