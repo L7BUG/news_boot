@@ -10,6 +10,7 @@ import com.l.requestUrl.DELETE;
 import com.l.requestUrl.POST;
 import com.l.service.CommentService;
 import com.l.service.NewService;
+import com.l.service.UserService;
 import com.l.utils.RespJsonUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -24,6 +25,9 @@ public class NewController {
 
     @Autowired
     private CommentService commentService;
+
+    @Autowired
+    private UserService userService;
 
     @PostMapping(POST.QUERY_NEW + "/{page}")
     public MyJSON<JSONObject> getPage(@RequestBody JSONObject request, @PathVariable("page") int page) {
@@ -63,6 +67,42 @@ public class NewController {
         } catch (Exception e) {
             resp = RespJsonUtils.get(CODE.ERROR, MESSAGE.ERROR, null);
             e.printStackTrace();
+        } finally {
+            return resp;
+        }
+    }
+
+    @DeleteMapping(DELETE.DELETE_NEW)
+    public MyJSON<Void> deleteNews(@RequestBody List<New> request) {
+        MyJSON<Void> resp = null;
+        try {
+            for (New n : request) {
+                Comment comment = new Comment();
+                comment.setMNew(n);
+                commentService.deleteBySelective(comment);
+                newService.deleteBySelective(n);
+            }
+            resp = RespJsonUtils.get(CODE.OK, "删除成功", null);
+        } catch (Exception e) {
+            resp = RespJsonUtils.get(CODE.ERROR, MESSAGE.ERROR, null);
+            e.printStackTrace();
+        } finally {
+            return resp;
+        }
+    }
+
+    @PostMapping(POST.ADD_NEW)
+    public MyJSON<Void> addNew(@RequestBody New n) {
+        MyJSON<Void> resp = null;
+        try {
+            if (userService.selectByPrimaryKey(n.getUser().getId()) == null) {
+                resp = RespJsonUtils.get(CODE.ERROR, "未找到该用户!", null);
+            } else {
+                newService.insertOne(n);
+                resp = RespJsonUtils.get(CODE.OK, "新增成功", null);
+            }
+        } catch (Exception e) {
+            resp = RespJsonUtils.get(null, false);
         } finally {
             return resp;
         }

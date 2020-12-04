@@ -22,4 +22,5 @@ public interface POST {
     //    news
 //    条件查询
     String QUERY_NEW = "/new/query";
+    String ADD_NEW = "/new/add";
 }
