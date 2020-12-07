@@ -11,4 +11,6 @@ public interface PUT {
     //    category
     String UPDATE_CATEGORY = "/category/update";
     String UPDATE_NEW = "/new/update";
+    //    comment
+    String UPDATE_COMMENT = "/comment/update";
 }

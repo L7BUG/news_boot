@@ -53,6 +53,9 @@
             <if test="user != null and user.id != null">
                 and userId = #{user.id}
             </if>
+            <if test="id != null">
+                and id = #{id}
+            </if>
         </where>
     </delete>
 
