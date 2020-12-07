@@ -51,7 +51,7 @@ class DataBaseInit {
             Category category = categories.get(random.nextInt(categories.size()));
             t.setCategory(category);
             t.setUser(user);
-            t.setTitle("测试新闻" + UUID.randomUUID().toString().substring(5));
+            t.setTitle("测试新闻" + UUID.randomUUID().toString().substring(0, 5));
             t.setContent(UUID.randomUUID().toString() + "这是新闻主体");
             newMapper.insertOne(t);
         }

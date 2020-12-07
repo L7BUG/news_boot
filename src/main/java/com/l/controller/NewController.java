@@ -8,6 +8,7 @@ import com.l.pojo.Comment;
 import com.l.pojo.New;
 import com.l.requestUrl.DELETE;
 import com.l.requestUrl.POST;
+import com.l.requestUrl.PUT;
 import com.l.service.CommentService;
 import com.l.service.NewService;
 import com.l.service.UserService;
@@ -101,6 +102,20 @@ public class NewController {
                 newService.insertOne(n);
                 resp = RespJsonUtils.get(CODE.OK, "新增成功", null);
             }
+        } catch (Exception e) {
+            resp = RespJsonUtils.get(null, false);
+        } finally {
+            return resp;
+        }
+    }
+
+    @PutMapping(PUT.UPDATE_NEW)
+    public MyJSON<Void> updateNew(@RequestBody New n) {
+        System.out.println(n);
+        MyJSON<Void> resp = null;
+        try {
+            newService.updateByPrimaryKeySelective(n);
+            resp = RespJsonUtils.get(null, true);
         } catch (Exception e) {
             resp = RespJsonUtils.get(null, false);
         } finally {
