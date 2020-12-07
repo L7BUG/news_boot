@@ -17,6 +17,11 @@ public class Comment implements Serializable {
     private New mNew;
 
     /**
+     * 用户id
+     */
+    private User user;
+
+    /**
      * 评论内容
      */
     private String content;

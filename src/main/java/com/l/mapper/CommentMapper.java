@@ -27,14 +27,14 @@ public interface CommentMapper {
     /**
      * 添加一条信息
      *
-     * @param comment content newId 为必填项目
+     * @param comment content newId userId 为必填项目
      * @return
      */
     int insertOne(Comment comment);
 
     /**
      * 动态条件删除信息
-     * id, newId 通过 and 拼接
+     * id, newId, userId 通过 and 拼接
      *
      * @return
      */

@@ -12,9 +12,15 @@
                 column="newId"
                 javaType="com.l.pojo.New"
                 select="com.l.mapper.NewMapper.selectByPrimaryKey"/>
+        <association
+                property="user"
+                column="userId"
+                javaType="com.l.pojo.User"
+                select="com.l.mapper.UserMapper.selectByPrimaryKey"/>
     </resultMap>
     <sql id="baseSql">
-        `id`, `newId`, `content`
+        `id`
+        , `newId`, `userId`, `content`
     </sql>
     <select id="selectAll" resultMap="CommentMap">
         select
@@ -30,18 +36,21 @@
     </select>
 
     <insert id="insertOne" parameterType="Comment">
-        insert into Comment (content, newId)
-        values (#{content}, #{mNew.id});
+        insert into Comment (content, newId, userId)
+        values (#{content}, #{mNew.id}, #{user.id});
     </insert>
 
     <delete id="deleteBySelective" parameterType="Comment">
         delete from Comment
         <where>
             <if test="content != null">
-                and content = #{content},
+                and content = #{content}
             </if>
             <if test="mNew != null and mNew.id != null">
-                and newId = #{mNew.id},
+                and newId = #{mNew.id}
+            </if>
+            <if test="user != null and user.id != null">
+                and userId = #{user.id}
             </if>
         </where>
     </delete>
@@ -54,6 +63,9 @@
             </if>
             <if test="content != null">
                 content = #{content},
+            </if>
+            <if test="user != null and user.id != null">
+                userId = #{user.id}
             </if>
         </set>
         where id = #{id};

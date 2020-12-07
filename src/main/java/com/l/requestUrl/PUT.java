@@ -8,4 +8,7 @@ public interface PUT {
 
     String UPDATE_PASSWORD_USER = "/user/password";
     String UPDATE_USER = "/user/update";
+    //    category
+    String UPDATE_CATEGORY = "/category/update";
+    String UPDATE_NEW = "/new/update";
 }

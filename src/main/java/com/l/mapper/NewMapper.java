@@ -2,6 +2,7 @@ package com.l.mapper;
 
 import com.l.pojo.New;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -56,4 +57,22 @@ public interface NewMapper {
      * @return
      */
     int updateByPrimaryKeyAddClicks(Integer id);
+
+    /**
+     * 分页动态查询 title 查询为 like 条件
+     *
+     * @param n
+     * @param index
+     * @param number
+     * @return
+     */
+    List<New> selectLimitBySelective(@Param("n") New n, @Param("index") Integer index, @Param("number") Integer number);
+
+    /**
+     * 获取动态条件查询的数量
+     *
+     * @param n
+     * @return
+     */
+    long selectSelectiveCount(New n);
 }

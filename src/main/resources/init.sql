@@ -55,8 +55,10 @@ create table if not exists Comment
 (
     id      int primary key auto_increment comment '评论id',
     newId   int  not null comment '新闻id',
+    userId  int  not null comment '用户Id',
     content text not null comment '评论内容',
-    constraint foreign key (newId) references New (id)
+    constraint foreign key (newId) references New (id),
+    constraint foreign key (userId) references User (id)
 ) char set utf8;
 insert into Category(name)
 values ('国内'),

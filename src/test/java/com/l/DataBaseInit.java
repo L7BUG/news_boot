@@ -51,7 +51,7 @@ class DataBaseInit {
             Category category = categories.get(random.nextInt(categories.size()));
             t.setCategory(category);
             t.setUser(user);
-            t.setTitle("测试新闻" + UUID.randomUUID().toString().substring(5));
+            t.setTitle("测试新闻" + UUID.randomUUID().toString().substring(0, 5));
             t.setContent(UUID.randomUUID().toString() + "这是新闻主体");
             newMapper.insertOne(t);
         }
@@ -59,10 +59,13 @@ class DataBaseInit {
 
     private void commentInit() {
         List<New> news = newMapper.selectAll();
+        List<User> users = userMapper.selectAll();
         Random random = new Random();
         Comment comment = new Comment();
         for (int i = 0; i < 1000; i++) {
             New aNew = news.get(random.nextInt(news.size()));
+            User user = users.get(random.nextInt(users.size()));
+            comment.setUser(user);
             comment.setMNew(aNew);
             comment.setContent(UUID.randomUUID().toString());
             commentMapper.insertOne(comment);

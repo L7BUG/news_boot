@@ -15,4 +15,12 @@ public interface POST {
     String QUERY_USER = "/user/query";
 
     String ADD_USER = "/user/add";
+
+    //    category
+    String ADD_CATEGORY = "/category/add";
+
+    //    news
+//    条件查询
+    String QUERY_NEW = "/new/query";
+    String ADD_NEW = "/new/add";
 }

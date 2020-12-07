@@ -52,4 +52,45 @@ public interface NewService {
      * @return
      */
     int updateByPrimaryKeyAddClicks(Integer id);
+
+    /**
+     * 分页动态查询 title 查询为 like 条件
+     *
+     * @param n
+     * @param index
+     * @param number
+     * @return
+     */
+    List<New> selectLimitBySelective(New n, Integer index, Integer number);
+
+    /**
+     * 获取动态条件查询的数量
+     *
+     * @param n
+     * @return
+     */
+    long selectSelectiveCount(New n);
+
+    /**
+     * 获取某一页
+     *
+     * @param page
+     * @param n
+     * @return
+     */
+    List<New> getPage(New n, int page);
+
+    /**
+     * 设置每页数量
+     *
+     * @param number
+     */
+    default void setPageShowNumber(int number) {
+
+    }
+
+    //    返回每页显示数量
+    default int getPageShowNumber() {
+        return 10;
+    }
 }

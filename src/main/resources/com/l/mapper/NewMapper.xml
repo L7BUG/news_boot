@@ -23,7 +23,8 @@
                 select="com.l.mapper.CategoryMapper.selectByPrimaryKey"></association>
     </resultMap>
     <sql id="baseSql">
-        id, title, content, categoryId, userId, publishTime, clicks, publishStatus
+        id
+        , title, content, categoryId, userId, publishTime, clicks, publishStatus
     </sql>
     <select id="selectByPrimaryKey" resultMap="baseMap">
         select
@@ -32,7 +33,8 @@
     </select>
 
     <select id="selectAll" resultMap="baseMap">
-        select * from New ;
+        select *
+        from New;
     </select>
 
     <insert id="insertOne" parameterType="com.l.pojo.New" useGeneratedKeys="true" keyProperty="id">
@@ -80,4 +82,46 @@
         set clicks = clicks + 1
         where id = #{id};
     </update>
+    <select id="selectLimitBySelective" resultMap="baseMap">
+        select
+        <include refid="baseSql"></include>
+        from New
+        <if test="n != null">
+            <where>
+                <if test="n.id != null">
+                    and id = #{n.id}
+                </if>
+                <if test="n.title != null">
+                    and title like CONCAT('%',#{n.title}, '%')
+                </if>
+                <if test="n.category != null and n.category.id != null">
+                    and categoryId = #{n.category.id}
+                </if>
+                <if test="n.user != null and n.user.id != null">
+                    and userId = #{n.user.id}
+                </if>
+            </where>
+        </if>
+        limit #{index}, #{number}
+    </select>
+
+    <select id="selectSelectiveCount" resultType="long">
+        select
+        count(id)
+        from New
+        <where>
+            <if test="id != null">
+                and id = #{id}
+            </if>
+            <if test="title != null">
+                and title like CONCAT('%',#{title}, '%')
+            </if>
+            <if test="category != null and category.id != null">
+                and categoryId = #{category.id}
+            </if>
+            <if test="user != null and user.id != null">
+                and userId = #{user.id}
+            </if>
+        </where>
+    </select>
 </mapper>
