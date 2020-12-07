@@ -3,6 +3,7 @@ package com.l.pojo;
 import lombok.Data;
 
 import java.io.Serializable;
+import java.util.Date;
 
 @Data
 public class Comment implements Serializable {
@@ -25,4 +26,9 @@ public class Comment implements Serializable {
      * 评论内容
      */
     private String content;
+
+    /**
+     * 评论时间 默认为 当前时间
+     */
+    private Date publishTime;
 }

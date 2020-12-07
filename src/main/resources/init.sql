@@ -53,10 +53,11 @@ create table if not exists New
 ) char set utf8;
 create table if not exists Comment
 (
-    id      int primary key auto_increment comment '评论id',
-    newId   int  not null comment '新闻id',
-    userId  int  not null comment '用户Id',
-    content text not null comment '评论内容',
+    id          int primary key auto_increment comment '评论id',
+    newId       int  not null comment '新闻id',
+    userId      int  not null comment '用户Id',
+    content     text not null comment '评论内容',
+    publishTime datetime default current_timestamp comment '评论时间 默认为 当前时间',
     constraint foreign key (newId) references New (id),
     constraint foreign key (userId) references User (id)
 ) char set utf8;
