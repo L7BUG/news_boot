@@ -71,4 +71,48 @@
         </set>
         where id = #{id};
     </update>
+
+    <select id="selectLimitBySelective" resultMap="CommentMap">
+        select
+        <include refid="baseSql"></include>
+        from Comment
+        <if test="comment != null">
+            <where>
+                <if test="comment.id != null">
+                    and id = #{comment.id}
+                </if>
+                <if test="comment.content != null">
+                    and content like CONCAT('%', #{comment.content}, '%')
+                </if>
+                <if test="comment.mNew != null and comment.mNew.id != null">
+                    and newId = #{comment.mNew.id}
+                </if>
+                <if test="comment.user != null and comment.user.id != null">
+                    and userId = #{comment.user.id}
+                </if>
+            </where>
+        </if>
+        limit #{index}, #{number}
+    </select>
+    <select id="selectSelectiveCount" resultType="java.lang.Long">
+        select
+        count(id)
+        from Comment
+        <if test="comment != null">
+            <where>
+                <if test="comment.id != null">
+                    and id = #{comment.id}
+                </if>
+                <if test="comment.content != null">
+                    and content like CONCAT('%', #{comment.content}, '%')
+                </if>
+                <if test="comment.mNew != null and comment.mNew.id != null">
+                    and newId = #{comment.mNew.id}
+                </if>
+                <if test="comment.user != null and comment.user.id != null">
+                    and userId = #{comment.user.id}
+                </if>
+            </where>
+        </if>
+    </select>
 </mapper>

@@ -2,6 +2,7 @@ package com.l.mapper;
 
 import com.l.pojo.Comment;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -47,4 +48,24 @@ public interface CommentMapper {
      * @return
      */
     int updateByPrimaryKeySelective(Comment comment);
+
+
+    /**
+     * 分页动态查询 content 查询为 like 条件
+     *
+     * @param comment
+     * @param index
+     * @param number
+     * @return
+     */
+    List<Comment> selectLimitBySelective(@Param("comment") Comment comment, @Param("index") int index, @Param("number") int number);
+
+
+    /**
+     * 获取动态条件查询的数量
+     *
+     * @param comment
+     * @return
+     */
+    long selectSelectiveCount(@Param("comment") Comment comment);
 }
