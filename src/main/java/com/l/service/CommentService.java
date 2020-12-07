@@ -43,4 +43,45 @@ public interface CommentService {
      * @return
      */
     int updateByPrimaryKeySelective(Comment comment);
+
+    /**
+     * 分页动态查询 content 查询为 like 条件
+     *
+     * @param comment
+     * @param index
+     * @param number
+     * @return
+     */
+    List<Comment> selectLimitBySelective(Comment comment, int index, int number);
+
+    /**
+     * 获取动态条件查询的数量
+     *
+     * @param comment
+     * @return
+     */
+    long selectSelectiveCount(Comment comment);
+
+    /**
+     * 获取某一页
+     *
+     * @param comment 查询条件
+     * @param page
+     * @return
+     */
+    List<Comment> getPage(Comment comment, int page);
+
+    /**
+     * 设置每页数量
+     *
+     * @param number
+     */
+    default void setPageShowNumber(int number) {
+
+    }
+
+    //    返回每页显示数量
+    default int getPageShowNumber() {
+        return 10;
+    }
 }

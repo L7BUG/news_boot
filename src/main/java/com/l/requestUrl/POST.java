@@ -23,4 +23,8 @@ public interface POST {
 //    条件查询
     String QUERY_NEW = "/new/query";
     String ADD_NEW = "/new/add";
+
+    //    comment
+    String QUERY_COMMENT = "/comment/query";
+    String ADD_COMMENT = "/comment/add";
 }

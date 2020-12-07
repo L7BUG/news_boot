@@ -14,4 +14,5 @@ public interface DELETE {
 
     //    new
     String DELETE_NEW = "/new/delete";
+    String DELETE_COMMENT = "/comment/delete";
 }

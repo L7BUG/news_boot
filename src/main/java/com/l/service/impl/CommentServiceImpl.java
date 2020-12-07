@@ -4,6 +4,7 @@ import com.l.mapper.CommentMapper;
 import com.l.pojo.Comment;
 import com.l.service.CommentService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -36,5 +37,33 @@ public class CommentServiceImpl implements CommentService {
     @Override
     public int updateByPrimaryKeySelective(Comment comment) {
         return commentMapper.updateByPrimaryKeySelective(comment);
+    }
+
+    @Override
+    public List<Comment> selectLimitBySelective(Comment comment, int index, int number) {
+        return commentMapper.selectLimitBySelective(comment, index, number);
+    }
+
+    @Override
+    public long selectSelectiveCount(Comment comment) {
+        return commentMapper.selectSelectiveCount(comment);
+    }
+
+    @Override
+    public List<Comment> getPage(Comment comment, int page) {
+        return selectLimitBySelective(comment, (page - 1) * this.pageShowNumber, this.pageShowNumber);
+    }
+
+    @Value("10")
+    private int pageShowNumber;
+
+    @Override
+    public void setPageShowNumber(int number) {
+        this.pageShowNumber = number;
+    }
+
+    @Override
+    public int getPageShowNumber() {
+        return this.pageShowNumber;
     }
 }
