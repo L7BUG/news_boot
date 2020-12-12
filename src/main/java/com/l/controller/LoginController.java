@@ -31,7 +31,7 @@ public class LoginController {
             if (user.getRole().getId() == 1 || user.getRole().getId() == 2)
                 return RespJsonUtils.get(CODE.OK, MESSAGE.OK, user);
             else
-                return RespJsonUtils.get(CODE.OK, "该用户没有权限", user);
+                return RespJsonUtils.get(CODE.ERROR, "该用户没有权限", user);
         } else {
             return RespJsonUtils.get(CODE.ERROR, MESSAGE.ERROR, null);
         }
