@@ -4,7 +4,7 @@ create table Role
 (
     id     int auto_increment not null comment '角色ID'
         primary key,
-    name   varchar(20)        null comment '角色名称',
+    name   varchar(20)        not null comment '角色名称',
     remark text               null comment '角色备注',
     constraint unique (name)
 ) char set utf8;
