@@ -3,7 +3,6 @@ package com.l.utils;
 import com.l.json.CODE;
 import com.l.json.MESSAGE;
 import com.l.json.MyJSON;
-import com.sun.istack.internal.NotNull;
 
 public class RespJsonUtils {
     /**
@@ -15,7 +14,7 @@ public class RespJsonUtils {
      * @param <T>     数据类型
      * @return
      */
-    public static <T> MyJSON<T> get(@NotNull Integer code, @NotNull String message, T data) {
+    public static <T> MyJSON<T> get(Integer code, String message, T data) {
         MyJSON<T> json = new MyJSON<>();
         if (data != null) {
             json.setData(data);
@@ -32,7 +31,7 @@ public class RespJsonUtils {
      * @param message 消息提示
      * @return
      */
-    public static MyJSON<Void> get(@NotNull Integer code, @NotNull String message) {
+    public static MyJSON<Void> get(Integer code, String message) {
         return get(code, message, null);
     }
 
