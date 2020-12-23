@@ -23,20 +23,13 @@ public class SwaggerConfig {
     public Docket docket() {
         return new Docket(DocumentationType.OAS_30)
                 .apiInfo(apiInfo())
-                .groupName("ByaoH")
+                .groupName("后台API")
                 .select()
 //                扫描什么路径
                 .apis(RequestHandlerSelectors.basePackage("com.l.controller"))
 //                过滤什么路径
 //                .paths(PathSelectors.ant("/l/**"))
                 .build();
-    }
-
-    @Bean
-    public Docket docket1() {
-        return new Docket(DocumentationType.OAS_30)
-                .apiInfo(apiInfo())
-                .groupName("后台API");
     }
 
     private ApiInfo apiInfo() {
