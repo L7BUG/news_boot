@@ -1,1 +1,3 @@
-# 毕业设计spring boot 项目
+# 新闻后台管理系统
+
+- [前端项目地址](https://github.com/ByaoH/my-news)
